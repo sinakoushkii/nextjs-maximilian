@@ -1,0 +1,1 @@
+This is repo belongs to next.js concepts
