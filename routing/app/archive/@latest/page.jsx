@@ -1,9 +1,16 @@
-import React from 'react'
+import NewsList from "@/components/NewsList";
+import { getLatestNews } from "@/lib/news";
+import React from "react";
 
 const LatestNewsPage = () => {
-  return (
-    <div>Latest News Page</div>
-  )
-}
+  const latestNews = getLatestNews();
 
-export default LatestNewsPage
+  return (
+    <>
+      <h2>Latest News</h2>
+      <NewsList news={latestNews} />
+    </>
+  );
+};
+
+export default LatestNewsPage;
