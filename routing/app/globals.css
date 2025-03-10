@@ -193,19 +193,3 @@ ul {
   text-align: center;
   margin-top: 3rem;
 }
-
-.flex{
-  display: flex;
-}
-.items-center{
-  justify-items: center;
-}
-.content-center{
-  justify-content: center;
-}
-.content-start{
-  justify-content: start;
-}
-.gap-1{
-  gap: 1rem;
-}

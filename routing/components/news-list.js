@@ -1,7 +1,6 @@
-import Link from "next/link";
-import React from "react";
+import Link from 'next/link';
 
-const NewsList = ({ news }) => {
+export default function NewsList({ news }) {
   return (
     <ul className="news-list">
       {news.map((newsItem) => (
@@ -14,6 +13,4 @@ const NewsList = ({ news }) => {
       ))}
     </ul>
   );
-};
-
-export default NewsList;
+}

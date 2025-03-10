@@ -1,6 +1,4 @@
-import React from "react";
-
-const ArchiveLayoutPage = ({ archive, latest }) => {
+export default function ArchiveLayout({ archive, latest }) {
   return (
     <div>
       <h1>News Archive</h1>
@@ -8,6 +6,4 @@ const ArchiveLayoutPage = ({ archive, latest }) => {
       <section id="archive-latest">{latest}</section>
     </div>
   );
-};
-
-export default ArchiveLayoutPage;
+}

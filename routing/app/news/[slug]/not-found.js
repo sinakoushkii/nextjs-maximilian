@@ -1,12 +1,8 @@
-import React from 'react'
-
-const NotFoundPage = () => {
+export default function NewsNotFoundPage() {
   return (
-    <div id='error'>
-        <h1>Not Found !</h1>
-        <p>Unfortunately, we couldn't find the requested article .</p>
+    <div id="error">
+      <h1>Not Found!</h1>
+      <p>Unfortunately, we could not find the requested article.</p>
     </div>
-  )
+  );
 }
-
-export default NotFoundPage
