@@ -1,4 +1,3 @@
-
 import { DUMMY_NEWS } from "@/dummy-news";
 import React from "react";
 
@@ -12,10 +11,16 @@ const NewsImagePage = ({ params }) => {
 
   return (
     <>
-      <h2>Intercepted !</h2>
-      <div className="full-screen">
-        <img src={`/images/news/${newsItem.image}`} />
-      </div>
+      <div className="modal-backdrop" />
+      <dialog className="modal" open>
+        <div className="fullscreen-image">
+          <img
+            src={`/images/news/${newsItem.image}`}
+            alt={newsItem.title}
+            style={{ width: "100%" }}
+          />
+        </div>
+      </dialog>
     </>
   );
 };
