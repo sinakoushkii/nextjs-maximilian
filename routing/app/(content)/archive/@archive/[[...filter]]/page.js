@@ -16,6 +16,7 @@ export default function FilteredNewsPage({ params }) {
 
   let news;
   let links = getAvailableNewsYears();
+  let newsContent = <p>Select a year to see the related news</p>;
 
   if (selectedYear && !selectedMonth) {
     news = getNewsForYear(selectedYear);
@@ -27,7 +28,6 @@ export default function FilteredNewsPage({ params }) {
     links = [];
   }
 
-  let newsContent = <p>No news found for the selected period.</p>;
 
   if (news && news.length > 0) {
     newsContent = <NewsList news={news} />;
