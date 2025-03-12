@@ -1,12 +1,9 @@
 import NewsList from '@/components/news-list';
+import { getAllNews } from '@/lib/news';
 
-export default async function NewsPage() {
-  const response = await fetch('http://localhost:8080/news');
-  const news = await response.json();
-
-  if(!response.ok){
-    throw new Error("Failed to fetch the news .")
-  }
+export default function NewsPage() {
+  //The code below doesnt work on client-side for the security reasons and by the help of server components in Next.js apps we can return data dircetly from the database
+  const news=getAllNews();
 
   return (
     <>
