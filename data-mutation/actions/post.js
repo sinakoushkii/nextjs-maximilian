@@ -3,6 +3,7 @@
 import { uploadImage } from "@/lib/cloudinary";
 import { storePost, updatePostLikeStatus } from "@/lib/posts";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 export async function createPost(previousState, formData) {
   const title = formData.get("title");
@@ -38,6 +39,7 @@ export async function createPost(previousState, formData) {
     content,
     userId: 1,
   });
+  revalidatePath("/","layout")
   redirect("/feed");
 }
 
