@@ -1,4 +1,5 @@
 import Messages from "@/components/messages";
+import { getMessages } from "@/lib/messages";
 import { unstable_noStore } from "next/cache";
 
 // Based on the below approach you can change cach setting for all the fetch requests in this file and you dont need to change the cach setting in each fetch request by yourself
@@ -17,12 +18,14 @@ export default async function MessagesPage() {
   //   revalidate:7
   // }
   // });
-  const response = await fetch("http://localhost:8080/messages", {
-    next: {
-      tags: ["messagesList"],
-    },
-  });
-  const messages = await response.json();
+  // const response = await fetch("http://localhost:8080/messages", {
+  //   next: {
+  //     tags: ["messagesList"],
+  //   },
+  // });
+  // const messages = await response.json();
+
+  const messages=getMessages();
 
   if (!messages || messages.length === 0) {
     return <p>No messages found</p>;
