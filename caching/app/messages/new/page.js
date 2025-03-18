@@ -9,7 +9,7 @@ export default function NewMessagePage() {
 
     const message = formData.get('message');
     addMessage(message);
-    // revalidateTag("messagesList")
+    revalidateTag("messagesList")
     redirect("/messages");
   }
 
