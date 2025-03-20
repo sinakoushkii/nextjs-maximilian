@@ -44,6 +44,25 @@ export async function verifyAuth() {
     };
   }
 
-  const sessionIsValid = await lucia.validateSession(sessionId);
-  return sessionIsValid
+  const result = await lucia.validateSession(sessionId);
+  try {
+    if (result.session && result.session.fresh) {
+      const sessionCookie = lucia.createSessionCookie(result.session.id);
+      cookies().set(
+        sessionCookie.name,
+        sessionCookie.value,
+        sessionCookie.attributes
+      );
+    }
+    if (!result.session) {
+      const sessionCookie = lucia.createBlankSessionCookie();
+      cookies().set(
+        sessionCookie.name,
+        sessionCookie.value,
+        sessionCookie.attributes
+      );
+    }
+  } catch {}
+
+  return result;
 }
