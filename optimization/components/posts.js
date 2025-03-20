@@ -4,12 +4,31 @@ import { formatDate } from "@/lib/format";
 import LikeButton from "./like-icon";
 import { togglePostLikeStatus } from "@/actions/post";
 import { useOptimistic } from "react";
+import Image from "next/image";
+
+function imageLoader(config) {
+  const imgeUrlStartWith = config.src.split("upload/")[0];
+  const imgeUrlEndtWith = config.src.split("upload/")[1];
+
+  const imageSize = `w_200,q_${config.quality}`;
+  const transformedUrl = `${imgeUrlStartWith}upload/${imageSize}/${imgeUrlEndtWith}`;
+
+  return transformedUrl;
+}
 
 function Post({ post, action }) {
   return (
     <article className="post">
       <div className="post-image">
-        <img src={post.image} alt={post.title} />
+        {/* remotePatterns: [{ hostname: "res.cloudinary.com" }] added to next.config file to allow next.js use the images of this wesite */}
+        <Image
+          loader={imageLoader}
+          src={post.image}
+          width={200}
+          height={120}
+          alt={post.title}
+          quality={50}
+        />
       </div>
       <div className="post-content">
         <header>
@@ -52,10 +71,10 @@ export default function Posts({ posts }) {
       const selectedPost = { ...prevPosts[selectedPostIndex] };
       selectedPost.isLiked = !selectedPost.isLiked;
       selectedPost.likes = selectedPost.likes + (selectedPost.isLiked ? -1 : 1);
-      
+
       const updatedPosts = [...prevPosts];
       updatedPosts[selectedPostIndex] = selectedPost;
-     
+
       return updatedPosts;
     }
   );
