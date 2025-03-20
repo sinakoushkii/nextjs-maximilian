@@ -1,4 +1,4 @@
-const { BetterSqlite3Adapter } = require("@lucia-auth/adapter-sqlite");
+import { BetterSqlite3Adapter } from "@lucia-auth/adapter-sqlite";
 import { Lucia } from "lucia";
 import db from "./db";
 import { cookies } from "next/headers";
@@ -25,4 +25,25 @@ export async function createAuthSession(userId) {
     sessionCookie.value,
     sessionCookie.attributes
   );
+}
+
+export async function verifyAuth() {
+  const sessionCookie = cookies().get(lucia.sessionCookieName);
+  if (!sessionCookie) {
+    return {
+      user: null,
+      session: null,
+    };
+  }
+
+  const sessionId = sessionCookie.value;
+  if (!sessionId) {
+    return {
+      user: null,
+      session: null,
+    };
+  }
+
+  const sessionIsValid = await lucia.validateSession(sessionId);
+  return sessionIsValid
 }
