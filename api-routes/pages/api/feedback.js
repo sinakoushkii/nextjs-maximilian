@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 
 function handler(req, res) {
-  if (req.method === "post") {
+  if (req.method === "POST") {
     const email = req.body.email;
     const feedback = req.body.feedback;
     const newFeedback = {
@@ -14,7 +14,7 @@ function handler(req, res) {
     const filePath = path.join(process.cwd(), "data", "feedback.json");
     const fileData = fs.readFileSync(filePath);
     const data = JSON.parse(fileData);
-    
+
     data.push(newFeedback);
 
     fs.writeFileSync(filePath, JSON.stringify(data));
