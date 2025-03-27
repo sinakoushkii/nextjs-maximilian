@@ -41,13 +41,13 @@ function HomePage() {
         </div>
         <div>
           <label htmlFor="feedback">Your email feedback</label>
-          <textArea
+          <textarea
             ref={feedbackRef}
             id="feedback"
             name="feedback"
             rows="5"
             required
-          ></textArea>
+          ></textarea>
         </div>
         <button type="submit">Send</button>
       </form> <br />
